@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container mt-2">
+
+        <div class="row">
+
+            <h1 class="col-6">Put Car Up For Sale </h1>
+
+            <a href="/dashboard" class="btn btn-secondary col-2">Dashboard</a>
+
+            <a href="/logout" class="btn btn-secondary col-2">Logout</a>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-8 offset-2">
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+
+                {% if messages %}
+
+                <div class="alert alert-danger" role="alert">
+
+                    <ul class="list-unstyled mb-0">
+
+                        {% for category , message in messages %}
+
+                        <li class="{{ category }}">{{ message }}</li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                    {% endif %}
+
+                    {% endwith %}
+
+                </div>
+
+                <form action="/cars/new/process" method="post">
+
+                    <div class="mb-3 col-2">
+
+                        <label for="price" class="form-label ">price:</label>
+
+                        <input type="number" name="price" id="price" class="form-control">
+
+                    </div>
+
+                    <div class="mb-3 col-4">
+
+                        <label for="Model" class="form-label">Model:</label>
+
+                        <input type="text" name="model" id="model">
+
+                    </div>
+
+                    <div class="mb-3 col-6">
+
+                        <label for="make" class="form-label">Make:</label>
+
+                        <input type="text" name="make" id="make">
+
+                    </div>
+
+                    <div class="mb-3 col-2">
+
+                        <label for="year" class="form-label">Year:</label>
+
+                        <input type="number" name="year" id="year" class="form-control">
+
+                    </div>
+
+            </div>
+
+            <label for="description" class="form-label">Description:</label>
+
+            <div class="mb-3">
+
+                <textarea name="description" id="description" cols="90" rows="5"></textarea>
+
+            </div>
+
+            <div class="mb-3">
+
+                <button type="submit" class="btn btn-success">Add</button>
+            </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Car Dashboard</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row">
+
+            <h1 class="col-6">Welcome to Car Dealz, {{ user.first_name }}!!!</h1>
+
+            <a href="/logout" class="btn btn-secondary col-2">Logout</a>
+
+        </div>
+
+        <div class="row">
+
+            <h2>Cars for Sale</h2>
+
+            <table class="table table-striped">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Model</th>
+
+                        <th>Year</th>
+
+                        <th>Seller</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for car in cars %}
+
+                    <tr>
+
+                        <td>{{ car.model }}</td>
+
+                        <td>{{ car.year }}</td>
+
+                        <td>{{ car.creator.first_name }}</td>
+
+                        <td>
+
+                            <a href="/cars/{{ car.id }}" class="btn btn-success">View car</a>
+
+                            {% if session['user_id'] == car.creator.id %}
+
+                            <a href="/cars/edit/{{ car.id }}" class="btn btn-secondary">Edit</a>
+
+                            <a href="/cars/destroy/{{ car.id }}" class="btn btn-danger">Delete</a>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <a href="/cars/new" class="btn btn-secondary col-2">Add a Car</a>
+
+    </div>
+
+</body>
+
+</html>
